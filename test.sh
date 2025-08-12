@@ -13,6 +13,7 @@ waktu=$(date +"%Y-%m-%d %H:%M:%S")
 echo "Kantor:"
 echo "1) Mampang Jamsostek"
 echo "2) ULTG Bekasi"
+echo "3) GUDANG TAMBUN"
 read -p "Masukkan nomor kantor: " kantor
 
 if [ "$kantor" == "1" ]; then
@@ -25,6 +26,11 @@ elif [ "$kantor" == "2" ]; then
    kantorId="AA370"
    latitude="-6.2046715"
    longitude="106.9834873"
+elif [ "$kantor" == "3" ]; then
+   # GUDANG TAMBUN
+   kantorId="AA408"
+   latitude="-6.269886"
+   longitude="107.048389"
 else
    echo "Kantor tidak valid!"
    exit 1
@@ -71,7 +77,7 @@ echo "appVersion=2.0.9"
 echo "deviceType=${DEVICE_TYPE}"
 echo "deviceId=${DEVICE_ID}"
 echo "idPegawai=${ID_PEGAWAI}"
-echo "lvl=AA0303010205"
+echo "lvl=AA0303010203"
 echo "organisasi=AA"
 echo "inOut=1"
 echo "wfhWfo=1"

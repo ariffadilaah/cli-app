@@ -13,8 +13,9 @@ waktu=$(date +"%Y-%m-%d %H:%M:%S")
 echo "Kantor:"
 echo "1) Mampang Jamsostek"
 echo "2) ULTG Bekasi"
+echo "3) GUDANG TAMBUN"
 read -p "Masukkan nomor kantor: " kantor
-
+##
 if [ "$kantor" == "1" ]; then
    # Mampang Jamsostek
    kantorId="AA128"
@@ -25,6 +26,11 @@ elif [ "$kantor" == "2" ]; then
    kantorId="AA370"
    latitude="-6.2046715"
    longitude="106.9834873"
+elif [ "$kantor" == "3" ]; then
+   # GUDANG TAMBUN
+   kantorId="AA408"
+   latitude="-6.269886"
+   longitude="107.048389"
 else
    echo "Kantor tidak valid!"
    exit 1
@@ -71,7 +77,7 @@ curl -X POST ${BASE_URL} \
 -F "deviceType=${DEVICE_TYPE}" \
 -F "deviceId=${DEVICE_ID}" \
 -F "idPegawai=${ID_PEGAWAI}" \
--F "lvl=AA0303010205" \
+-F "lvl=AA0303010203" \
 -F "organisasi=AA" \
 -F "inOut=1" \
 -F "wfhWfo=1" \
