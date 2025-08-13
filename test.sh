@@ -58,6 +58,7 @@ if ! [[ "$index" =~ ^[0-9]+$ ]] || [ "$index" -lt 1 ] || [ "$index" -gt ${#files
 fi
 
 FILE="${files[$((index - 1))]}"
+photo="${files[$((index - 1))]#./}" # Remove leading "./"
 
 if [ ! -f "$FILE" ]; then
   echo "File not found"
@@ -91,7 +92,7 @@ echo "zona=7"
 echo "fileSize=${fileSize}"
 echo "height=1080"
 echo "width=810" 
-echo "file=@${files[$((index - 1))]#./}" # Remove leading "./"
+echo "file=@${photo}"
 echo "tanggal=${tanggal}"
 echo "waktu=${waktu}"
 echo "https://www.google.com/maps?q=${latitude},${longitude}"
