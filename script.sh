@@ -52,6 +52,7 @@ if ! [[ "$index" =~ ^[0-9]+$ ]] || [ "$index" -lt 1 ] || [ "$index" -gt ${#files
 fi
 
 FILE="${files[$((index - 1))]}"
+photo="${files[$((index - 1))]#./}" # Remove leading "./"
 
 if [ ! -f "$FILE" ]; then
   echo "File not found"
@@ -85,7 +86,6 @@ curl -X POST ${BASE_URL} \
 -F "fileSize=${fileSize}" \
 -F "height=1080" \
 -F "width=810" \
-# Remove leading "./" from file path
--F "file=@${files[$((index - 1))]#./}" \
+-F "file=@${photo}" \
 -F "tanggal=${tanggal}" \
 -F "waktu=${waktu}"
