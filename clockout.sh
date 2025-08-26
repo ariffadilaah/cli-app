@@ -15,7 +15,7 @@ echo "1) Mampang Jamsostek"
 echo "2) ULTG Bekasi"
 echo "3) GUDANG TAMBUN"
 read -p "Masukkan nomor kantor: " kantor
-
+##
 if [ "$kantor" == "1" ]; then
    # Mampang Jamsostek
    kantorId="AA128"
@@ -69,30 +69,29 @@ fi
 fileBytes=$(stat -c %s "$FILE" 2>/dev/null || stat -f %z "$FILE")
 fileSize=$(( fileBytes / 1000 ))  # Pembulatan ke atas
 
-# Output
-echo "POST ${BASE_URL}"
-echo "Content-Type:multipart/form-data"
-echo "User-Agent:okhttp/4.9.0"
-echo "Authorization:Bearer ${TOKEN}"
-echo "appVersion=2.0.9"
-echo "deviceType=${DEVICE_TYPE}"
-echo "deviceId=${DEVICE_ID}"
-echo "idPegawai=${ID_PEGAWAI}"
-echo "lvl=${LEVEL}"
-echo "organisasi=AA"
-echo "inOut=1"
-echo "wfhWfo=1"
-echo "keterangan="
-echo "accuracyLocation=13.154"
-echo "latitude=${latitude}"
-echo "longitude=${longitude}"
-echo "statusLocation=2"
-echo "kantorId=${kantorId}"
-echo "zona=7"
-echo "fileSize=${fileSize}"
-echo "height=1080"
-echo "width=810" 
-echo "file=@${photo}"
-echo "tanggal=${tanggal}"
-echo "waktu=${waktu}"
-echo "https://www.google.com/maps?q=${latitude},${longitude}"
+# Kirim POST request dengan form-data
+curl -X POST ${BASE_URL} \
+-H "Content-Type:multipart/form-data" \
+-H "User-Agent:okhttp/4.9.0" \
+-H "Authorization:Bearer ${TOKEN}" \
+-F "appVersion=2.0.9" \
+-F "deviceType=${DEVICE_TYPE}" \
+-F "deviceId=${DEVICE_ID}" \
+-F "idPegawai=${ID_PEGAWAI}" \
+-F "lvl=${LEVEL}" \
+-F "organisasi=AA" \
+-F "inOut=0" \
+-F "wfhWfo=1" \
+-F "keterangan=" \
+-F "accuracyLocation=13.154" \
+-F "latitude=${latitude}" \
+-F "longitude=${longitude}" \
+-F "statusLocation=2" \
+-F "kantorId=${kantorId}" \
+-F "zona=7" \
+-F "fileSize=${fileSize}" \
+-F "height=1080" \
+-F "width=810" \
+-F "file=@${photo}" \
+-F "tanggal=${tanggal}" \
+-F "waktu=${waktu}"
